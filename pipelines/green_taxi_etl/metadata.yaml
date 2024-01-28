@@ -166,7 +166,7 @@ settings:
 spark_config: {}
 tags: []
 type: python
-updated_at: '2024-01-28 14:59:10'
+updated_at: '2024-01-28T15:26:38+00:00'
 uuid: green_taxi_etl
 variables_dir: /home/src/mage_data/zoompcamp_homework_w2
 widgets:
@@ -174,6 +174,10 @@ widgets:
   color: null
   configuration:
     chart_type: table
+    group_by:
+    - pickup_date
+    - sum(passenger_count)
+    - sum(trip_distance)
     limit: 10
     x: x
     y: y

@@ -16,3 +16,5 @@ terraform/keys/terraform-demo-411110-8ef6da51b509.json
 terraform/terraform.tfstate
 terraform/.terraform/providers/registry.terraform.io/hashicorp/google/4.51.0/windows_386/terraform-provider-google_v4.51.0_x5.exe
 terraform/.terraform.lock.hcl
+database.duckdb
+
