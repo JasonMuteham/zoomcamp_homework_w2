@@ -4,22 +4,49 @@ blocks:
   configuration: {}
   downstream_blocks:
   - filter_rows
+  - raw_duckdb
   executor_config: null
   executor_type: local_python
   has_callback: false
   language: python
   name: get_last_q_2020
   retry_config: null
-  status: updated
+  status: executed
   timeout: null
   type: data_loader
   upstream_blocks: []
   uuid: get_last_q_2020
-- all_upstream_blocks_executed: false
+- all_upstream_blocks_executed: true
+  color: null
+  configuration:
+    data_provider: duckdb
+    data_provider_profile: default
+    dbt: {}
+    disable_query_preprocessing: false
+    export_write_policy: append
+    limit: 1000
+    use_raw_sql: true
+  downstream_blocks:
+  - raw_analysis
+  executor_config: null
+  executor_type: local_python
+  has_callback: false
+  language: sql
+  name: raw_duckdb
+  retry_config: null
+  status: executed
+  timeout: null
+  type: data_exporter
+  upstream_blocks:
+  - get_last_q_2020
+  uuid: raw_duckdb
+- all_upstream_blocks_executed: true
   color: null
   configuration: {}
   downstream_blocks:
   - to_duck
+  - to_gcp
+  - to_gcp_parquet
   executor_config: null
   executor_type: local_python
   has_callback: false
@@ -32,7 +59,23 @@ blocks:
   upstream_blocks:
   - get_last_q_2020
   uuid: filter_rows
-- all_upstream_blocks_executed: false
+- all_upstream_blocks_executed: true
+  color: null
+  configuration: {}
+  downstream_blocks: []
+  executor_config: null
+  executor_type: local_python
+  has_callback: false
+  language: python
+  name: to_gcp_parquet
+  retry_config: null
+  status: executed
+  timeout: null
+  type: data_exporter
+  upstream_blocks:
+  - filter_rows
+  uuid: to_gcp_parquet
+- all_upstream_blocks_executed: true
   color: null
   configuration:
     data_provider: duckdb
@@ -44,8 +87,7 @@ blocks:
     export_write_policy: replace
     limit: 1000
     use_raw_sql: true
-  downstream_blocks:
-  - to_gcp
+  downstream_blocks: []
   executor_config: null
   executor_type: local_python
   has_callback: false
@@ -58,7 +100,32 @@ blocks:
   upstream_blocks:
   - filter_rows
   uuid: to_duck
-- all_upstream_blocks_executed: false
+- all_upstream_blocks_executed: true
+  color: null
+  configuration:
+    data_provider: duckdb
+    data_provider_profile: default
+    data_provider_schema: mage
+    dbt: {}
+    disable_query_preprocessing: false
+    export_write_policy: replace
+    limit: 1000
+    use_raw_sql: true
+  downstream_blocks:
+  - table_for_raw_analysis_1706453032121
+  executor_config: null
+  executor_type: local_python
+  has_callback: false
+  language: sql
+  name: raw_analysis
+  retry_config: null
+  status: executed
+  timeout: null
+  type: data_loader
+  upstream_blocks:
+  - raw_duckdb
+  uuid: raw_analysis
+- all_upstream_blocks_executed: true
   color: null
   configuration:
     data_provider: duckdb
@@ -72,11 +139,11 @@ blocks:
   language: python
   name: to_gcp
   retry_config: null
-  status: not_executed
+  status: executed
   timeout: null
   type: data_exporter
   upstream_blocks:
-  - to_duck
+  - filter_rows
   uuid: to_gcp
 cache_block_output_in_memory: false
 callbacks: []
@@ -99,7 +166,27 @@ settings:
 spark_config: {}
 tags: []
 type: python
-updated_at: '2024-01-25T01:58:51+00:00'
+updated_at: '2024-01-28 14:59:10'
 uuid: green_taxi_etl
 variables_dir: /home/src/mage_data/zoompcamp_homework_w2
-widgets: []
+widgets:
+- all_upstream_blocks_executed: true
+  color: null
+  configuration:
+    chart_type: table
+    limit: 10
+    x: x
+    y: y
+  downstream_blocks: []
+  executor_config: null
+  executor_type: local_python
+  has_callback: false
+  language: sql
+  name: table for raw_analysis 1706453032121
+  retry_config: null
+  status: executed
+  timeout: null
+  type: chart
+  upstream_blocks:
+  - raw_analysis
+  uuid: table_for_raw_analysis_1706453032121

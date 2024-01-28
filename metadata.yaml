@@ -58,4 +58,6 @@ features:
   code_block_v2: true
   dbt_v2: true
   project_platform: false
+  command_center: true
+  display_local_timezone: true
 pipelines:

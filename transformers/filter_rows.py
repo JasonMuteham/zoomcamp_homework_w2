@@ -22,15 +22,13 @@ def execute_transformer_action(df: DataFrame, *args, **kwargs) -> DataFrame:
                             "PULocationID": "pu_location_id",
                             "DOLocationID": "do_location_id"
                             })
-    action = build_transformer_action(
-        df,
-        action_type=ActionType.FILTER,
-        axis=Axis.ROW,
-        action_code='passenger_count > 0 and trip_distance > 0'
-    )
 
 
-    return BaseAction(action).execute(df)
+    df[['passenger_count', 'trip_distance']] = df[['passenger_count', 'trip_distance']].fillna(value=0)
+    df = df[df['passenger_count'] > 0]
+    df = df[df['trip_distance'] > 0]
+
+    return df
 
 
 @test
@@ -40,11 +38,9 @@ def test_output(output, *args) -> None:
     """
     assert output is not None, 'The output is undefined'
 
+
 @test
 def test_output2(output, *args) -> None:
-    """
-    Template code for testing the output of the block.
-    """
     assert output['passenger_count'].isin([0]).sum()==0 , 'Passenger count is zero'
     assert output['trip_distance'].isin([0]).sum()==0 , 'Trip distance is zero'
     assert output['vendor_id'].isin([1,2]).count() == output['vendor_id'].count() , 'vendor id error'

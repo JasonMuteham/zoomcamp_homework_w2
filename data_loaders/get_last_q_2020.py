@@ -30,16 +30,23 @@ def load_data_from_api(*args, **kwargs):
         'congestion_surcharge': float 
         }
 
-    parse_dates = ['lpep_pickup_datetime', 'lpep_dropoff_datetime']
+    #parse_dates = ['lpep_pickup_datetime', 'lpep_dropoff_datetime']
+    date_format = "%Y-%m-%d %H:%M:%S"
     df_out = pd.DataFrame()
    
     for month in range(10,13):
         url = f'https://github.com/DataTalksClub/nyc-tlc-data/releases/download/green/green_tripdata_2020-{month}.csv.gz'
-        df = pd.read_csv(url, sep=',', compression = 'gzip', dtype=taxi_dtypes, parse_dates=parse_dates)
+        df = pd.read_csv(url, sep=',', compression = 'gzip', dtype=taxi_dtypes)
         kwarg_logger.info(f'green_tripdata_2020-{month}.csv.gz - shape{df.shape}')
         df_out = pd.concat([df_out, df], ignore_index=True)
 
     kwarg_logger.info(f'green_tripdata - shape{df_out.shape}')
+
+    df_out['pickup_datetime'] = df_out['lpep_pickup_datetime']
+    df_out['dropoff_datetime'] = df_out['lpep_dropoff_datetime'] 
+
+    df_out['lpep_pickup_datetime'] = pd.to_datetime(df_out['lpep_pickup_datetime'], format=date_format)
+    df_out['lpep_dropoff_datetime'] = pd.to_datetime(df_out['lpep_dropoff_datetime'], format=date_format)
 
     return df_out
 
