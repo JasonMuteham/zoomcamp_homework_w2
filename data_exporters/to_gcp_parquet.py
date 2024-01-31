@@ -9,7 +9,7 @@ import pyarrow.parquet as pq
 if 'data_exporter' not in globals():
     from mage_ai.data_preparation.decorators import data_exporter
 
-os.environ['GOOGLE_APPLICATION_CREDENTIALS'] = "zoompcamp_homework_w2/terraform/keys/terraform-demo-411110-8ef6da51b509.json"
+os.environ['GOOGLE_APPLICATION_CREDENTIALS'] = "zoomcamp_homework_w2/terraform/keys/terraform-demo-411110-8ef6da51b509.json"
 bucket_name = 'homework-w2-411110-bucket'
 project_id = 'terraform-demo-411110'
 table_name = 'green_taxi.data'

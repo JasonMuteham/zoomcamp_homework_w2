@@ -166,9 +166,9 @@ settings:
 spark_config: {}
 tags: []
 type: python
-updated_at: '2024-01-28T15:26:38+00:00'
+updated_at: '2024-01-31 17:13:38'
 uuid: green_taxi_etl
-variables_dir: /home/src/mage_data/zoompcamp_homework_w2
+variables_dir: /home/src/mage_data/zoomcamp_homework_w2
 widgets:
 - all_upstream_blocks_executed: true
   color: null

@@ -33,7 +33,7 @@ default:
   DUCKDB_DATABASE: zoompcamp_homework_w2/database.duckdb
   DUCKDB_SCHEMA: main
   # Google
-  GOOGLE_SERVICE_ACC_KEY_FILEPATH: "zoompcamp_homework_w2/terraform/keys/terraform-demo-411110-8ef6da51b509.json"
+  GOOGLE_SERVICE_ACC_KEY_FILEPATH: "zoomcamp_homework_w2/terraform/keys/terraform-demo-411110-8ef6da51b509.json"
   GOOGLE_LOCATION: US # Optional
   # MongoDB
   # Specify either the connection string or the (host, password, user, port) to connect to MongoDB.
